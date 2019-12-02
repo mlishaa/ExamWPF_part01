@@ -1,0 +1,89 @@
+﻿<Window x:Class="DBDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBDemo"
+        mc:Ignorable="d"
+        Title="Visitor's List" Height="450" Width="800">
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem Header="_New Visitor" Click="BtnAddVisitor_Click"/>
+                <MenuItem Header="_Save to csv File"/>
+                <Separator/>
+                <MenuItem Header="E_xit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Ed_it Visitor info" Click="BtnEditVisitorInfo_Click"/>
+                <MenuItem Header="_Delete Visitor" Click="BtnDelete_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray>
+            <ToolBar>
+                <Button x:Name="btnSavecsvToolBar"  ToolTip="Add New Visitor">
+                    <Image Source="Images\NewFile_16x.png"/>
+                </Button>
+                <Separator/>
+                <Button x:Name="btnNewTooBar" Click="SaveTOCsv_Click" ToolTip="Save Visitor list to csv file">
+                    <Image Source="Images\Save_16x.png"/>
+                </Button>
+                <Separator/>
+                <Button x:Name="btnEditTooBar"  ToolTip="Edit visitor info">
+                    <Image Source="Images\EditTableRow_16x.png"/>
+                </Button>
+                <Separator/>
+                <Button x:Name="btnDeleteTooBar"  ToolTip="Delete visitor ">
+                    <Image Source="Images\Close_red_16x.png"/>
+                </Button>
+                <Button x:Name="btnInfo"  ToolTip="Conference info" Click="BtnInfo_Click">
+                    <Image Source="Images\info_icon.png"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        
+    <Grid Margin="10">
+        <!--First grid column and row defs-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <!--Left handside of my window-->
+        <DataGrid x:Name="gridDbData" Grid.Column="1" />
+        <!--Right handside of my window-->
+        <StackPanel>
+            <TextBlock x:Name="txtbconferenceTitle" Text="Conference" Margin="10" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+            <Button x:Name="btnAddVisitor" Content="Add New Visitor" Margin="5" Click="BtnAddVisitor_Click"/>
+            <Button x:Name="btnEditVisitorInfo" Content="Edit Visitor Info" Margin="5,0,5,0" Click="BtnEditVisitorInfo_Click" />
+            <Button x:Name="btnDelete" Content="Delete Visitor Record" Margin="5,5,5,0" Click="BtnDelete_Click" />
+            <Button x:Name="btnLoadAllData" Content="Clear Filters" Margin="5,20,5,5" Click="BtnLoadAllData_Click"/>
+
+            <GroupBox Header="Criteria Search" Margin="5,20,5,0">
+                <StackPanel>
+                    <TextBlock Text="Search by Name" Margin="0,5,0,0"/>
+                    <TextBox x:Name="txtName"/>
+                    <Button x:Name="btnSearchByName" Content="Search" Click="BtnSearchByName_Click"/>
+
+                    <TextBlock Text="Search by Country" Margin="0,10,0,0" />
+                    <ComboBox x:Name="cmbCountries" SelectionChanged="CmbCountries_SelectionChanged" />
+
+                    <CheckBox x:Name="chkSpeaker" Click="ChkSpeaker_Click" Content="Show List of Speaker Only" Margin="0,20,0,0"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Date Search" Margin="5,20,5,0">
+                <StackPanel>
+                    <TextBlock Text="Starting Date" Margin="0,5,0,0"/>
+                    <DatePicker x:Name="dpStartDate" Margin="5"/>
+
+                    <TextBlock Text="Ending Date" Margin="0,10,0,0"/>
+                    <DatePicker x:Name="dpEndDate" Margin="5"/>
+
+                    <Button x:Name="btnDateSearch" Content="Search by Date" Margin="0,10,0,0" Click="BtnDateSearch_Click"/>
+
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+    </StackPanel>
+</Window>
